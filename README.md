@@ -6,7 +6,7 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ## [Prerequisites]
 - Have your ec2 Bastion host (amazon-linux2) instance
 - pem key to access your servers
-- Add tags to your servers depending on OS (ex. Key:Ubuntu Value:Server, Key:Centos Value:Server)
+- Add tags to your servers you would like to save logs depending on OS (ex. Key:Ubuntu Value:Server, Key:Centos Value:Server)
 
 ## [Terraform]
 
@@ -152,7 +152,7 @@ You should be able to see a successfull playbook installing all requeriments to 
   0 0 * * 0 ansible-playbook "passed_in_hosts=tag_Ubuntu_Server" /home/ec2-user/terraform/ansible_templates/ubuntu.yml
 ```
 
-## [Expanding further]
+## [Expand further]
 
 1. Make roles and save credentials on Ansible vault
 1. Create and run you playbooks while running terraform, creating a new infrastructure using "local-exec"
