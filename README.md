@@ -65,3 +65,11 @@ aws/terraform/ansible
   
 [Setting up the Environment]
 
+1. Copy thhis policy
+
+   wget
+   
+2. Save Access Key ID and Secret Key for your terraform
+
+
+
