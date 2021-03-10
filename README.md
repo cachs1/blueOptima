@@ -2,8 +2,9 @@
 aws/terraform/ansible
 
 ## [Prerequisites]
-- Have your ec2 instance in your vpc where you can see all server (ec2)
+- Have your ec2 (amazon-linux2) instance in your vpc where you can see all server (ec2)
 - pem key to access your servers
+- Add tags to your servers depending on OS (ex. Ubuntu Server)
 
 ## [Terraform]
 
@@ -16,7 +17,6 @@ aws/terraform/ansible
  $ sudo yum -y install unzip
  $ unzip terraform_0.14.7_linux_amd64.zip
 ```
-
 3. echo $PATH to check all routes
 
   `$ echo $PATH`
@@ -40,9 +40,9 @@ aws/terraform/ansible
   `$ pip3 install awscli --user`
   
 3. Download Ansible
-```
+`
   $ sudo amazon-linux-extras install ansible2
-```
+`
 4. Check if its all isntalled
 
   `$ ansible --version`
@@ -140,7 +140,6 @@ aws/terraform/ansible
  ` $ ansible-palybook -e "passed_in_hosts=tag_Apache_Server" amzn2.yml`
   
 You should be able to see a successfull playbook
-
 
   
 ## [Adding a crontab for running everyweek]
