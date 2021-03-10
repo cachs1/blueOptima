@@ -1,34 +1,34 @@
 # blueOptima
 aws/terraform/ansible
 
-##[Prerequisites]
+## [Prerequisites]
 - Have your ec2 instance in your vpc where you can see all server (ec2)
 - pem key to access your servers
 
-[Terraform]
+## [Terraform]
 
 1. Download terraform binary
 
- $ wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip
+ '$ wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip'
 
 2. Unzip terraform
 
- $ yum -y install unzip
- $ unzip terraform_0.14.7_linux_amd64.zip
+ '$ yum -y install unzip'
+ '$ unzip terraform_0.14.7_linux_amd64.zip'
 
 3. echo $PATH to check all routes
 
-  $ echo $PATH
+  '$ echo $PATH'
   
 4. Move Terraform unziped file to usr/local/bin
 
-  $ sudo mv terraform /usr/local/bin
+  '$ sudo mv terraform /usr/local/bin'
   
 5. Check if terraform is available from anywhere
 
-  $ terraform version
+  '$ terraform version'
   
-##[Setting up the environment AWS CLI and Ansible]
+## [Setting up the environment AWS CLI and Ansible]
 
 1. Depending on the OS, install pythons pip (Pythons package installer)
 
