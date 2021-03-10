@@ -41,8 +41,6 @@ aws/terraform/ansible
   
 3. Download Ansible
 ```
-  $ sudo yum-config-manager -enable epel
-  $ sudo yum update
   $ sudo amazon-linux-extras install ansible2
 ```
 4. Check if its all isntalled
