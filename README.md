@@ -1,10 +1,12 @@
 # blueOptima
 aws/terraform/ansible
 
+Deploy an ec2 instance, configure terraform and ansible to work with your aws infrastructure
+
 ## [Prerequisites]
-- Have your ec2 (amazon-linux2) instance in your vpc where you can see all server (ec2)
+- Have your ec2 Bastion host (amazon-linux2) instance
 - pem key to access your servers
-- Add tags to your servers depending on OS (ex. Ubuntu Server)
+- Add tags to your servers depending on OS (ex. Key:Ubuntu Value:Server, Key:Centos Value:Server)
 
 ## [Terraform]
 
@@ -47,7 +49,7 @@ aws/terraform/ansible
 
   `$ ansible --version`
   
-5. Configure AWS CLI
+5. Configure AWS CLI add your credentials
 ```
   $ aws configure
   $ default region name: us-east-1
@@ -66,7 +68,7 @@ aws/terraform/ansible
 ````  
 ## [Setting up the Environment]
 
-1. Copy this policy into AWS Console
+1. Copy this policy into AWS Console IAM Policy
 
   `$ wget https://raw.githubusercontent.com/cachs1/blueOptima/master/policy/terraform_ansible_iam_policy.json`
    
@@ -131,20 +133,20 @@ aws/terraform/ansible
   inventory = # YOUR ROUTE FOR INVENTORY aws_ec2.yml
   enable_plugins = aws_ec2
   interpreter_python = auto_silent
-  private_key_file = # YOUR PRIVATE KEY ROUTE
+  private_key_file = # YOUR PRIVATE PEM KEY ROUTE
 ```  
 ## [Test playbooks]
 
 1. Move to ansible_templates
 
- ` $ ansible-playbook -e "passed_in_hosts=tag_Apache_Server" amzn2.yml`
+ ` $ ansible-playbook -e "passed_in_hosts=tag_Ubuntu_Server" ubuntu.yml`
   
-You should be able to see a successfull playbook
+You should be able to see a successfull playbook installing all requeriments to upload to s3 bucket
 
   
 ## [Adding a crontab for running everyweek]
 
-1. Edit crontab
+1. Edit crontab for automatic playbooks even if you add new server
 ```
   $ crontab -e
   0 0 * * 0 ansible-playbook "passed_in_hosts=tag_Ubuntu_Server" /home/ec2-user/terraform/ansible_templates/ubuntu.yml
@@ -152,6 +154,7 @@ You should be able to see a successfull playbook
 
 ## [Expanding further]
 
+1. Make roles and save credentials on Ansible vault
 1. Create and run you playbooks while running terraform, creating a new infrastructure using "local-exec"
 2. Use SNS to push messages after playbook
   
