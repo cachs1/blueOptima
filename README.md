@@ -78,8 +78,8 @@ aws/terraform/ansible
 
   variable "s3-name" {
   type    = string
-  default = "NAME OF YOUR BUCKET"
-  }
+  default = YOUR BUCKET NAME 
+ }
 
 
 2. After copy all, lets run Terraform init
