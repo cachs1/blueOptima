@@ -62,11 +62,15 @@ aws/terraform/ansible
   
 ## [Setting up the Environment]
 
-1. Copy this policy
+1. Copy this policy into AWS Console
 
    $ wget
    
-2. Save Access Key ID and Secret Key for your terraform
+2. Add User - Add Programamtic Access - Attach new created policy 
+
+3. Save Access Key ID and Secret Key
+
+
 
 
 
