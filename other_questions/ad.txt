@@ -1,0 +1,8 @@
+- Check requirements for company
+- Size of AD
+- Groups split in "security control lists" and "access control lists"
+- Smaller GPO for easy mantain
+- Run Microsoft Security baseline
+- Enable audit login
+- Check logs
+- Enable active directory recycle bin
