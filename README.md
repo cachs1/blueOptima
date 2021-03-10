@@ -8,9 +8,9 @@ aws/terraform/ansible
 ## [Terraform]
 
 1. Download terraform binary
-
+'''
  '$ wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip'
-
+'''
 2. Unzip terraform
 
  '$ yum -y install unzip'
