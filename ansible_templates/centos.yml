@@ -1,0 +1,36 @@
+---
+- hosts: "{{ passed_in_hosts }}"
+  gather_facts: yes
+  vars:
+    access_key: #YOUR ACCESS KEY
+    secret_key: #YOUR SECRET KEY
+  become: no
+  tasks:
+  - name: Update apt
+    become: yes
+    yum:
+      name: "*"
+      state: latest
+  - name: Install python3-pip and python-pip
+    become: yes
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python3-pip
+      - python-pip
+  - name: Install boto3 and botocore with pipprueba
+    become: yes
+    pip:
+      name:
+      - boto3
+      - botocore
+  - name: s3 sync prueba
+    become: yes 
+    s3_sync:
+      aws_access_key: "{{ access_key }}"
+      aws_secret_key: "{{ secret_key }}"
+      aws_region: us-east-1
+      bucket: #YOUR BUCKET NAME
+      file_root: /var/log/
+      key_prefix: /{{lookup('env', 'SSH_CLIENT')}}/{{lookup('pipe', 'date +%Y%m%d%H%M%S')}}
