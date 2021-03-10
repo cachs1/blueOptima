@@ -137,7 +137,7 @@ aws/terraform/ansible
 
 1. Move to ansible_templates
 
- ` $ ansible-palybook -e "passed_in_hosts=tag_Apache_Server" amzn2.yml`
+ ` $ ansible-playbook -e "passed_in_hosts=tag_Apache_Server" amzn2.yml`
   
 You should be able to see a successfull playbook
 
@@ -149,6 +149,11 @@ You should be able to see a successfull playbook
   $ crontab -e
   0 0 * * 0 ansible-playbook "passed_in_hosts=tag_Ubuntu_Server" /home/ec2-user/terraform/ansible_templates/ubuntu.yml
 ```
+
+## [Expanding further]
+
+1. Create and run you playbooks while running terraform, creating a new infrastructure using "local-exec"
+2. Use SNS to push messages after playbook
   
 
 
