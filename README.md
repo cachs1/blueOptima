@@ -13,7 +13,7 @@ aws/terraform/ansible
 
 2. Unzip terraform
 ```
- $ yum -y install unzip
+ $ sudo yum -y install unzip
  $ unzip terraform_0.14.7_linux_amd64.zip
 ```
 
