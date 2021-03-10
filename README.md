@@ -60,9 +60,9 @@ aws/terraform/ansible
  `$ aws ec2 describe-instances`
   
   
-##[Setting up the Environment]
+## [Setting up the Environment]
 
-1. Copy thhis policy
+1. Copy this policy
 
    $ wget
    
