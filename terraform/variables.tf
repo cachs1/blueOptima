@@ -10,5 +10,5 @@ variable "region-master" {
 
 variable "s3-name" {
   type    = string
-  default = "bucket-prueba-blueoptima"
+  default = YOUR BUCKET NAME
 }
