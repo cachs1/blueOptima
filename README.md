@@ -75,17 +75,38 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 
 3. Save Access Key ID and Secret Key (FOR TERRAFORM AND ANSIBLE)
 
+## [Clone Repo]
+
+1. Clone repository inside you home, and move to it
+```
+  $ git clone https://github.com/cachs1/blueOptima.git
+  $ cd blueOptima
+```
+
+2. Here you will have the nex files
+```
+ ansible.cfg
+ other_questions
+ policy
+ README.md
+ terraform
+```
 ## [Setting up Terraform]
 
-1. Copy all terraform files on a directory
+1. Move to terraform directory so we can edit all files to our use case
 
-  `$ mkdir terraform`
+  `cd terraform`
   
-2. Edit name on s3.tf name of bucket creation
+3. Edit name on variables.tf name of bucket creation
 ```
+  variable "region-master" {
+   type    = string
+   default = "YOUR REGION AWS"
+ }
+
   variable "s3-name" {
-  type    = string
-  default = YOUR BUCKET NAME 
+   type    = string
+   default = "YOUR BUCKET NAME" 
  }
 ```
 
