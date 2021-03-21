@@ -6,6 +6,9 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ## [Prerequisites]
 - Have your ec2 Bastion host (amazon-linux2) instance
 - pem key to access your servers
+- Make Sure that "Access for less secure apps has been turned on" in you Gmail account by following the below link 
+  LINK: https://myaccount.google.com/lesssecureapps                                                         
+  If Not your email will not be delivered and you will recieve a Warning Notifcation like "Review blocked sign-in attempt"
 
 ## [Terraform]
 
@@ -223,8 +226,7 @@ strict: False
  ansible-vault encrypt keys.yml
 
 ```  
-
-
+7. IMPORTANT For the playbook be able to send mail, to edit less secure app on gmail
 
 ## [Test playbooks]
 
