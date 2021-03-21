@@ -1,5 +1,5 @@
 ---
-   - name: pingear
+   - name: Ping
      win_ping:
  
    - name: Find files windows
@@ -9,39 +9,16 @@
       recurse: yes
      register: output_windows
 
-   - name: install aws tools
+   - name: Install aws tools
      win_package:
       path: http://sdk-for-net.amazonwebservices.com/latest/AWSToolsAndSDKForNet.msi
       state: present
       creates_path: 'C:\Program Files\Amazon\Ec2ConfigService'
 
-   - name: copy aws config
+   - name: Copy aws config
      win_template: 
       src: 'aws_config.ps1.j2'
       dest: 'Z:\aws_config.ps1'
 
-   - name: config aws sdk tools
+   - name: Config aws sdk tools
      win_shell: Z:\aws_config.ps1
-
-   - name: Probar con s3 sin sync
-#     become: yes
-     aws_s3:
-      aws_access_key: "{{ access_key }}"
-      aws_secret_key: "{{ secret_key }}"
-      aws_region: "{{ region }}"
-      bucket: "{{ bucket_name }}"
-      mode: put
-      object: /{{ansible_hostname}}/{{ansible_date_time.date}}/{{ item }} 
-      src: "{{ item }}"
-     with_items: "{{ output_windows.files | map(attribute='path') | list }}"
-
-   - name: email
-#     become: yes
-     mail:
-      host: "{{ host_mail }}"
-      port: 587
-      username: "{{ username_mail }}"
-      password: "{{ password_mail }}"
-      to: "{{ to_mail }}"
-      subject: Ansible-Report
-      body: System {{ ansible_hostname }} has been succesfully backuped the following files {{ output_windows.files | map(attribute='path') | list }}
