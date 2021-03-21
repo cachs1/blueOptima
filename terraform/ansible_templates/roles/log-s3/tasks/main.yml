@@ -1,0 +1,37 @@
+   - name: Find files with age of less than 30 days
+     find:
+      paths: "{{log_file}}"
+      patterns: ['*.gz*', '*.log*']
+      age: "{{ n_days }}"
+      recurse: yes
+     register: output
+
+   - name: Probar con s3 sin sync
+     become: yes
+     aws_s3:
+      aws_access_key: "{{ access_key }}"
+      aws_secret_key: "{{ secret_key }}"
+      aws_region: "{{ region }}"
+      bucket: "{{ bucket_name }}"
+      mode: put
+      object: /{{ansible_hostname}}/{{ansible_date_time.date}}/{{ item }}
+      src: "{{ item }}"
+     with_items: "{{ output.files | map(attribute='path') | list }}"
+
+   - name: email
+     become: yes
+     mail:
+      host: "{{ host_mail }}"
+      port: 587
+      username: "{{ username_mail }}"
+      password: "{{ password_mail }}"
+      to: "{{ to_mail }}"
+      subject: Ansible-Report
+      body: System {{ ansible_hostname }} has been succesfully backuped the following files {{ output.files | map(attribute='path') | list }}
+
+   - name: Delete the files matching after backed up
+     become: yes
+     file:
+       path: "{{item.path}}"
+       state: absent
+     with_items: "{{ output.files }}"
