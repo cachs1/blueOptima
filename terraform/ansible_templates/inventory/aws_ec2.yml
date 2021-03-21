@@ -8,7 +8,8 @@ plugin: aws_ec2
 
 #set region
 regions: 
-  - us-east-1
+  -  <PUT IN YOUR REGION>
+
 # - us-east-2# set strict to False    
 # if True this will make invalid entries 
 # a fatal error
