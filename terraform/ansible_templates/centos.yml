@@ -1,0 +1,17 @@
+---
+  - name: Update yum
+    become: yes
+    yum:
+      name: "*"
+      state: latest
+  - name: Install epel, python3-pip and python-pip
+    become: yes
+    yum:
+      name: ['epel-release', 'python3-pip', 'python-pip']
+      state: present
+  - name: Install boto3 and botocore with pipprueba
+    become: yes
+    pip:
+      name:
+      - boto3
+      - botocore
