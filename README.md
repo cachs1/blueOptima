@@ -165,22 +165,22 @@ strict: False
 
 
 ```  
-3. Edit aws_ec2.yml file and add the keys from the policy 
-```
-  aws_access_key: <PUT IN YOUR AWS ACCESS KEY>
-  aws_secret_key: <PUT IN YOUR AWS SECRET KEY>
-```
-5. SCP your pem key if its a new server, where -i is your key, file, user@ip bastion host : home of server
+3. (optional). If you dont have your pem key on your bastion host you can SCP your pem key to the new server, where -i is your key(local), file(file to transfer), user@ip_bastion_host:home_of_new_server
 
   `scp -i test.pem test.pem ec2-user@x.x.x.x:~/.`
 
-6. Edit your ansible.cfg file from etc to put the respective files
-```
-  inventory = # YOUR ROUTE FOR INVENTORY aws_ec2.yml
-  enable_plugins = aws_ec2
-  interpreter_python = auto_silent
-  private_key_file = # YOUR PRIVATE PEM KEY ROUTE
+4. Copy the ansible.cfg file into your /etc/ansible/ansible.cfg file
+
+  `$ cp ansible.cfg /etc/ansible/ansible.cfg`
+
+4. Change variables for your case
 ```  
+  inventory = #YOUR ROUTE FOR INVENTORY/aws_ec2.yml
+  #inventory = /home/ec2-user/terraform/ansible_templates/inventory/aws_ec2.yml
+  private_key_file = # YOUR PRIVATE PEM KEY ROUTE
+  #private_key_file = /home/ec2-user/blueOptima.pem
+```  
+
 ## [Test playbooks]
 
 1. Move to ansible_templates
