@@ -1,17 +1,17 @@
-# profile 
+#Add our profile 
 variable "profile" {
   type    = "string"
   default = "default"
 }
 
-# aws
+#Provider aws
 provisioner "aws" {
   profile = var.profile
   region  = var.region-master
   alias   = "region-master"
 }
 
-#vpc
+#Create vpc
 resource "aws_vpc" "vpc_master" {
   provider             = aws.region-master
   cidr_block           = "10.0.0.0/16"
@@ -81,7 +81,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   ingress {
     protocol   = "tcp"
-    rule_no    = 200
+    rule_no    = 100
     action     = "allow"
     cidr_block = "10.0.1.0/16"
     from_port  = 80
@@ -90,7 +90,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   ingress {
     protocol   = "tcp"
-    rule_no    = 100
+    rule_no    = 200
     action     = "allow"
     cidr_block = "10.0.1.0/16"
     from_port  = 22
@@ -99,7 +99,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   ingress {
     protocol   = "tcp"
-    rule_no    = 100
+    rule_no    = 300
     action     = "allow"
     cidr_block = "10.0.2.0/16"
     from_port  = 22
@@ -108,7 +108,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   ingress {
     protocol   = "tcp"
-    rule_no    = 100
+    rule_no    = 400
     action     = "allow"
     cidr_block = "10.0.2.0/16"
     from_port  = 3306
@@ -117,7 +117,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   egress {
     protocol   = "tcp"
-    rule_no    = 200
+    rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
     from_port  = 80
@@ -126,7 +126,7 @@ resource "aws_network_acl" "acl_subnet_1" {
 
   egress {
     protocol   = "tcp"
-    rule_no    = 300
+    rule_no    = 200
     action     = "allow"
     cidr_block = "0.0.0.0/0"
     from_port  = 443
