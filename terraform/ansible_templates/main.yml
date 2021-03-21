@@ -1,0 +1,24 @@
+---
+- hosts: aws_ec2 
+  vars_files:
+   - keys.yml
+  become: no
+  pre_tasks:
+   - name: Do some tasks 
+     block:
+      - name: Amazon ec2 
+        include_tasks: "{{ansible_user_id}}.yml"
+        when: ansible_user_id == "ec2-user" 
+      - name: Centos
+        include_tasks: "{{ansible_user_id}}.yml"
+        when: ansible_user_id == "centos" 
+      - name: Ubuntu
+        include_tasks: "{{ansible_user_id}}.yml"
+        when: ansible_user_id == "ubuntu" 
+      - name: Windows
+        include_tasks: "{{ansible_user_id}}.yml"
+        when: ansible_user_id == "Administrator"  
+
+  roles:
+   - logrotate
+   - log-s3
