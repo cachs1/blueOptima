@@ -134,22 +134,15 @@ region: <ADD_HERE_REGION>
 bucket_name: <ADD_HERE_BUCKET_NAME>
 
 #MAIL CONF
-host_mail: smtp.gmail.com
 username_mail: <ADD_HERE_YOUR_USERNAME>
 password_mail: <ADD_HERE_YOUR_PASSWORD>
 to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
 
-#ANSIBLE CONF
-ansible_ssh_common_args: -o StrictHostKeyChecking=no
-
 #DAYS YOU WANT YOUR BACKUP FOR N DAYS, EXAMPLE 
 #n_days: -1d      #MODIFIED PAST DAY
 #n_days: 5d       #MODIFIED PAST 5 DAYS
-n_days: 5d
+n_days: <DAYS FOR BACKUP>
 
-
-#LOG FILE LOCATION
-log_file: /var/log
 
 ```
 2. Edit inventory file with your corresponding values
