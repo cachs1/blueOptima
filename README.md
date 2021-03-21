@@ -125,6 +125,8 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 
 2. Edit variables file named "keys.yml" and "windows_keys.yml" with your use case scenario corresponding the values
 ```
+$ vim keys.yml
+
 #AWS CONF
 access_key: <ADD_HERE_YOUR_ACCESS_KEY>
 secret_key: <ADD_HERE_YOUR_SECRET_KEY>
@@ -143,6 +145,40 @@ to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
 #n_days: 5d       #MODIFIED PAST 5 DAYS
 n_days: <DAYS FOR BACKUP>
 
+#
+
+$ vim windows_keys.yml
+
+#ANSIBLE CONF
+ansible_port: 5986
+ansible_user: Administrator
+ansible_user_id: Administrator
+ansible_password: <PASSWORD OF THE PEM KEY IN STRING>
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+#AWS CONF
+access_key: <ADD_HERE_YOUR_ACCESS_KEY>
+secret_key: <ADD_HERE_YOUR_SECRET_KEY>
+
+#S3 BUCKET CONF
+region: <ADD_HERE_REGION>
+bucket_name: <ADD_HERE_BUCKET_NAME>
+
+#MAIL CONF
+host_mail: smtp.gmail.com
+username_mail: <ADD_HERE_YOUR_USERNAME>
+password_mail: <ADD_HERE_YOUR_PASSWORD>
+to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
+
+#DAYS YOU WANT YOUR BACKUP FOR N DAYS, EXAMPLE 
+#n_days: -1d      #MODIFIED PAST DAY
+#n_days: 5d       #MODIFIED PAST 5 DAYS
+n_days: 5d
+
+#LOG FILE DIRECTORY
+log_file: <ADD_LOG_FILE_LOCATION>
 
 ```
 
@@ -182,10 +218,10 @@ strict: False
   private_key_file = # YOUR PRIVATE PEM KEY ROUTE
   #private_key_file = /home/ec2-user/blueOptima.pem
 ```  
-6. Encrypt sensitive files with ansible-vault
+6. (optional) Your Bastion should be in a private net, only you can access, but if you want you can encrypt sensitive files with ansible-vault
 ```  
  ansible-vault encrypt keys.yml
- ansible-vault encrypt 
+
 ```  
 
 
@@ -199,7 +235,7 @@ strict: False
   $ ansible-playbook main.yml -u ec2-user
 
 ```  
-This is way an easy way to connect to different flavours of OS
+This is way an easy way to connect to different flavours of OS, with the roles its going put a logrotate you can modify for different things, check files not modified, send them to s3, email you, and erase them after successfull task
 
   
 ## [Adding a crontab for running everyweek]
