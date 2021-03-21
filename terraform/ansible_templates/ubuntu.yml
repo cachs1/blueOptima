@@ -1,0 +1,28 @@
+---
+  - name: Update apt
+    become: yes
+    yum:
+      name: "*"
+      state: latest
+  - name: Install software-propierties-common
+    become: yes
+    apt:
+      name: ['software-properties-common']
+      state: present
+  - name: Add universe repository for bionic
+    become: yes
+    apt_repository:
+      repo: deb http://archive.ubuntu.com/ubuntu bionic universe
+      state: present
+    when: ansible_distribution_release == 'bionic'
+  - name: Install python3-pip and python-pip
+    become: yes
+    apt:
+      name: ['python3-pip','python-pip'] 
+      state: present
+  - name: Install boto3 and botocore with pip
+    become: yes
+    pip:
+      name:
+      - boto3
+      - botocore
