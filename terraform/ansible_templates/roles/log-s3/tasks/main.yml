@@ -18,6 +18,10 @@
       src: "{{ item }}"
      with_items: "{{ output.files | map(attribute='path') | list }}"
 
+#Make Sure that "Access for less secure apps has been turned on" in you Gmail account by following the below link 
+##      LINK: https://myaccount.google.com/lesssecureapps                                                         
+## If Not your email will not be delivered and you will recieve a Warning Notifcation like "Review blocked sign-in attempt"
+
    - name: Send email of the files
      become: yes
      mail:
