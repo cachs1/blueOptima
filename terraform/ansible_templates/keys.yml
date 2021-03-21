@@ -1,0 +1,23 @@
+#AWS CONF
+access_key: <ADD_HERE_YOUR_ACCESS_KEY>
+secret_key: <ADD_HERE_YOUR_SECRET_KEY>
+
+#S3 BUCKET CONF
+region: <ADD_HERE_REGION>
+bucket_name: <ADD_HERE_BUCKET_NAME>
+
+#MAIL CONF
+host_mail: smtp.gmail.com
+username_mail: <ADD_HERE_YOUR_USERNAME>
+password_mail: <ADD_HERE_YOUR_PASSWORD>
+to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
+
+#ANSIBLE CONF
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+#DAYS YOU WANT YOUR BACKUP
+#n_days: 5d
+n_days: -1d
+
+#LOG FILE LOCATION
+log_file: /var/log
