@@ -68,9 +68,9 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ````  
 ## [Setting up the Environment]
 
-1. Copy this policy into AWS Console IAM Policy
+1. Copy this policy and paste it into AWS Console IAM Policy, it is necesary for the playbook to run
 
-  `$ wget https://raw.githubusercontent.com/cachs1/blueOptima/master/policy/terraform_ansible_iam_policy.json`
+  `https://raw.githubusercontent.com/cachs1/blueOptima/master/policy/terraform_ansible_iam_policy.json`
    
 2. Add User - Add Programamtic Access - Attach new created policy 
 
