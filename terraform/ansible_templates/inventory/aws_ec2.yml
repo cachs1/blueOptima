@@ -3,9 +3,6 @@
 aws_access_key: <PUT IN YOUR AWS ACCESS KEY>
 aws_secret_key: <PUT IN YOUR AWS SECRET KEY>
 
-#set private key
-private_key_file: <PUT IN YOUR PRIVATE KEY FILE LOCATION>
-
 #aws ec2 ansible dynamic inventory plugin
 plugin: aws_ec2
 
