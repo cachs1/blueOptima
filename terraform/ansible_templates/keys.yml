@@ -15,9 +15,11 @@ to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
 #ANSIBLE CONF
 ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
-#DAYS YOU WANT YOUR BACKUP
-#n_days: 5d
-n_days: -1d
+#DAYS YOU WANT YOUR BACKUP FOR N DAYS, EXAMPLE 
+#n_days: -1d      #MODIFIED PAST DAY
+#n_days: 5d       #MODIFIED PAST 5 DAYS
+n_days: 5d
+
 
 #LOG FILE LOCATION
 log_file: /var/log
