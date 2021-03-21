@@ -5,10 +5,10 @@ variable "profile" {
 
 variable "region-master" {
   type    = string
-  default = "us-east-1"
+  default = "YOUR REGION AWS"
 }
 
 variable "s3-name" {
   type    = string
-  default = YOUR BUCKET NAME
+  default = "YOUR BUCKET NAME"
 }
