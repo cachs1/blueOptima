@@ -6,11 +6,10 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ## [Prerequisites]
 - Have your ec2 Bastion host (amazon-linux2) instance
 - pem key to access your servers
-- Add tags to your servers you would like to save logs depending on OS (ex. Key:Ubuntu Value:Server, Key:Centos Value:Server)
 
 ## [Terraform]
 
-1. Download terraform binary
+1. Connect to your ec2 instance and download terraform binary
 
  `$ wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip`
 
@@ -55,7 +54,7 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
   $ default region name: us-east-1
   $ default output format: json
 ```  
-6. Check if our aws configuration was right
+6. Check if our aws configuration was right, it should output information
 
  `$ aws ec2 describe-instances`
  
@@ -68,7 +67,7 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ````  
 ## [Setting up the Environment]
 
-1. Copy this policy and paste it into AWS Console IAM Policy, it is necesary for the playbook to run
+1. Open up AWS Console and copy this policy and paste it into AWS Console IAM Policy, it is necesary for the playbook to run
 
   `https://raw.githubusercontent.com/cachs1/blueOptima/master/policy/terraform_ansible_iam_policy.json`
    
