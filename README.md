@@ -118,26 +118,59 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
 ```  
 ## [Setting up Ansible]
 
-1. Copy all ansible files on a directory
+1. Move into ansible_templates
+
+  `cd ansible_templates`
+
+
+2. Edit variables file named "keys.yml" with your use case scenario corresponding the values
 ```
-  $ mkdir ansible_templates
-  $ cd ansible_templates
-  $ curl -O https://raw.github.com/cachs1/blueOptima/blob/master/ansible_templates/amzn2.yml
-  $ curl -O https://raw.github.com/cachs1/blueOptima/blob/master/ansible_templates/centos.yml
-  $ curl -O https://raw.github.com/cachs1/blueOptima/blob/master/ansible_templates/ubuntu.yml
-```  
-2. Edit Vars and Bucket name on the files corresponding to your bucket name creation
+#AWS CONF
+access_key: <ADD_HERE_YOUR_ACCESS_KEY>
+secret_key: <ADD_HERE_YOUR_SECRET_KEY>
+
+#S3 BUCKET CONF
+region: <ADD_HERE_REGION>
+bucket_name: <ADD_HERE_BUCKET_NAME>
+
+#MAIL CONF
+host_mail: smtp.gmail.com
+username_mail: <ADD_HERE_YOUR_USERNAME>
+password_mail: <ADD_HERE_YOUR_PASSWORD>
+to_mail: <ADD_HERE_WHO_SEND_MAIL@gmail.com>
+
+#ANSIBLE CONF
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+#DAYS YOU WANT YOUR BACKUP FOR N DAYS, EXAMPLE 
+#n_days: -1d      #MODIFIED PAST DAY
+#n_days: 5d       #MODIFIED PAST 5 DAYS
+n_days: 5d
+
+
+#LOG FILE LOCATION
+log_file: /var/log
+
 ```
-   vars:
-    access_key: #YOUR ACCESS KEY
-    secret_key: #YOUR SECRET KEY
-   bucket: #YOUR BUCKET NAME
+2. Edit inventory file with your corresponding values
 ```
-2. Create another directory for the inventory plug in
-```
-  $ mkdir inventory
-  $ cd inventory
-  $ curl -O https://raw.githubusercontent.com/cachs1/blueOptima/master/ansible_templates/inventory/aws_ec2.yml
+  $ vim inventory/aws_ec2.yml
+ 
+ #set aws_access_key and secret_key.
+aws_access_key: <PUT IN YOUR AWS ACCESS KEY>
+aws_secret_key: <PUT IN YOUR AWS SECRET KEY>
+
+
+
+#set region
+regions: 
+  - <PUT IN YOUR REGION>
+# - us-east-2# set strict to False    
+# if True this will make invalid entries 
+# a fatal error
+strict: False
+
+
 ```  
 3. Edit aws_ec2.yml file and add the keys from the policy 
 ```
