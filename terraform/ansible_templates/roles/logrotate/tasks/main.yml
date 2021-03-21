@@ -1,0 +1,12 @@
+- name: Log rotate
+  become: yes
+  blockinfile:
+   path: "/etc/logrotate.d/test"
+   create: true
+   block: |
+     /var/log/* /var/log/*/* {
+     daily
+     rotate 5
+     compress
+     }
+
