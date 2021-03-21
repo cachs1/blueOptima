@@ -1,4 +1,4 @@
-   - name: Find files with age of less than 30 days
+   - name: Find files with age of less than n days
      find:
       paths: "{{log_file}}"
       patterns: ['*.gz*', '*.log*']
@@ -6,7 +6,7 @@
       recurse: yes
      register: output
 
-   - name: Probar con s3 sin sync
+   - name: Upload to s3
      become: yes
      aws_s3:
       aws_access_key: "{{ access_key }}"
@@ -18,7 +18,7 @@
       src: "{{ item }}"
      with_items: "{{ output.files | map(attribute='path') | list }}"
 
-   - name: email
+   - name: Send email of the files
      become: yes
      mail:
       host: "{{ host_mail }}"
