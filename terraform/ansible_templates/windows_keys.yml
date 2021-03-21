@@ -1,0 +1,31 @@
+ansible_port: 5986
+ansible_user: Administrator
+ansible_user_id: Administrator
+ansible_password: h*QmUDPVea)aWy(e?JsAR)RyPy%GBbSQ
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+#AWS CONF
+access_key: AKIATJOZQJGBNBYK43TD
+secret_key: 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
+
+#S3 BUCKET CONF
+region: us-east-1
+bucket_name: bucket-prueba-blueoptima
+
+#MAIL CONF
+host_mail: smtp.gmail.com
+username_mail: cachaparro@uach.mx
+password_mail: Old_Medal2
+to_mail: <cachaparrosoto@gmail.com>
+
+#ANSIBLE CONF
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+#DAYS YOU WANT YOUR BACKUP FOR N DAYS, EXAMPLE 
+#n_days: -1d      #MODIFIED PAST DAY
+#n_days: 5d       #MODIFIED PAST 5 DAYS
+n_days: 5d
+
+#LOG FILE DIRECTORY
+log_file: <ADD_LOG_FILE_LOCATION>
