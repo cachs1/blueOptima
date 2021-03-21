@@ -123,7 +123,7 @@ Deploy an ec2 instance, configure terraform and ansible to work with your aws in
   `cd ansible_templates`
 
 
-2. Edit variables file named "keys.yml" with your use case scenario corresponding the values
+2. Edit variables file named "keys.yml" and "windows_keys.yml" with your use case scenario corresponding the values
 ```
 #AWS CONF
 access_key: <ADD_HERE_YOUR_ACCESS_KEY>
@@ -145,6 +145,7 @@ n_days: <DAYS FOR BACKUP>
 
 
 ```
+
 2. Edit inventory file with your corresponding values
 ```
   $ vim inventory/aws_ec2.yml
@@ -164,6 +165,7 @@ regions:
 strict: False
 
 
+
 ```  
 3. (optional). If you dont have your pem key on your bastion host you can SCP your pem key to the new server, where -i is your key(local), file(file to transfer), user@ip_bastion_host:home_of_new_server
 
@@ -173,21 +175,31 @@ strict: False
 
   `$ cp ansible.cfg /etc/ansible/ansible.cfg`
 
-4. Change variables for your case
+5. Change variables for your case
 ```  
   inventory = #YOUR ROUTE FOR INVENTORY/aws_ec2.yml
   #inventory = /home/ec2-user/terraform/ansible_templates/inventory/aws_ec2.yml
   private_key_file = # YOUR PRIVATE PEM KEY ROUTE
   #private_key_file = /home/ec2-user/blueOptima.pem
 ```  
+6. Encrypt sensitive files with ansible-vault
+```  
+ ansible-vault encrypt keys.yml
+ ansible-vault encrypt 
+```  
+
+
 
 ## [Test playbooks]
 
-1. Move to ansible_templates
+1. Test ansible playbooks moving to ansible_templates, the way it works is only you have to pass the user to connect to different OS for example if you would like to connect to centos you would pass user 'centos', for ubuntu it would be 'ubuntu', for amazon-ec2 it would be 'ec2-user'
+```  
+  $ ansible-playbook main.yml -u centos
+  $ ansible-playbook main.yml -u ubuntu
+  $ ansible-playbook main.yml -u ec2-user
 
- ` $ ansible-playbook -e "passed_in_hosts=tag_Ubuntu_Server" ubuntu.yml`
-  
-You should be able to see a successfull playbook installing all requeriments to upload to s3 bucket
+```  
+This is way an easy way to connect to different flavours of OS
 
   
 ## [Adding a crontab for running everyweek]
@@ -195,14 +207,18 @@ You should be able to see a successfull playbook installing all requeriments to 
 1. Edit crontab for automatic playbooks even if you add new server
 ```
   $ crontab -e
-  0 0 * * 0 ansible-playbook "passed_in_hosts=tag_Ubuntu_Server" /home/ec2-user/terraform/ansible_templates/ubuntu.yml
+  0 0 * * 0 ansible-playbook /home/ec2-user/terraform/ansible_templates/main.yml -u ubuntu
+  0 0 * * 0 ansible-playbook /home/ec2-user/terraform/ansible_templates/main.yml -u centos
+  0 0 * * 0 ansible-playbook /home/ec2-user/terraform/ansible_templates/main.yml -u ec2-user
 ```
 
 ## [Expand further]
 
-1. Make roles and save credentials on Ansible vault
-1. Create and run you playbooks while running terraform, creating a new infrastructure using "local-exec"
-2. Use SNS to push messages after playbook
+1. Any other OS added to your aws environment, you could just add a simple task to install python, pip, and name it on the block main.yml file so when ansible checks another OS it would run the task
+2. Use Regex for s3 upload of files
+3. Run Windows aws sdk for upload to s3 from within windows
+4. Better format on roles
+
   
 
 
