@@ -8,8 +8,8 @@ ansible_winrm_server_cert_validation: ignore
 ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 #AWS CONF
-access_key: AKIATJOZQJGBNBYK43TD
-secret_key: EHK9HaArWHjYg7/IKAzbnhcWzXZLGxiBVmMqq5U3
+access_key: <ADD_HERE_YOUR_ACCESS_KEY>
+secret_key: <ADD_HERE_YOUR_SECRET_KEY>
 
 #S3 BUCKET CONF
 region: <ADD_HERE_REGION>
