@@ -4,7 +4,7 @@ aws/terraform/ansible
 Deploy an ec2 instance, configure terraform and ansible to work with your aws infrastructure
 
 ## [Prerequisites]
-- Have your ec2 Bastion host (amazon-linux2) instance
+- Have your ec2 Bastion host (amazon-linux2) instance, open ports 22
 - pem key to access your servers
 - Make Sure that "Access for less secure apps has been turned on" in you Gmail account by following the below link 
   LINK: https://myaccount.google.com/lesssecureapps                                                         
@@ -256,7 +256,10 @@ This is way an easy way to connect to different flavours of OS, with the roles i
 2. Use Regex for s3 upload of files
 3. Run Windows aws sdk for upload to s3 from within windows
 4. Better format on roles
-
+5. For Windows you would need to open ports 5985-5986 SG, and run the next command in powershell as Administratorfor being able to manage the windows node 
+```
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://github.com/ansible/ansible/raw/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'))"
+```
   
 
 
